@@ -1,0 +1,2 @@
+docker build -t rinduapp_image:tag .
+docker run -p 2808:2808 --name rinduapp rinduapp_image:tag
