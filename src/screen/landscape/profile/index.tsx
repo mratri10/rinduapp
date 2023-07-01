@@ -1,5 +1,6 @@
 import React from 'react';
 import ListPopUp from '../../../component/listPopup';
+import DateField from '../../../component/dateField';
 
 function ProfileScreen() {
     return (
@@ -16,6 +17,7 @@ function ProfileScreen() {
                             placeholder='Masukan Nama Anda' />
                     </div>
                     <ListPopUp data={['Laki-laki', 'Perempuan']} onPress={(v) => { console.log("+++++++++++++ ", v) }} title='Gender' />
+                    <DateField onPress={(v) => { console.log("+++++++++++++ ", v) }} title='Tanggal Lahir' />
                     <button className='w-full py-2 bg-primary text-white rounded ' type='button'>Update Data</button>
                 </form>
             </div>

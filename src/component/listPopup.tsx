@@ -18,7 +18,7 @@ function ListPopUp({ data, title, onPress }: TypeList) {
     }
 
     return (
-        <div className='relative'>
+        <div>
             <button type='button' className={`border-gray-400 border-2 text-left py-2 px-4 rounded w-full ${selected ? 'text-gray' : 'text-gray-400'}`}
                 onClick={() => setIsOpen(!isOpen)}>
                 <h1>{selected ? selected : title}</h1>
