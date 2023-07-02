@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
 
 
-type TypeList = {
-    data: string[],
-    title: string,
-    onPress: (v: string) => void
+
+type InputProps = {
+    label: string, data: string[], name: string, value: string, onChange: (v: string) => void
 }
-function ListPopUp({ data, title, onPress }: TypeList) {
+const ListPopUp = ({ data, label, name, value, onChange }: InputProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selected, setSelected] = useState('');
 
     const handleSelected = (isSelected: boolean) => {
         if (isSelected) {
-            onPress(selected)
+            onChange(selected)
         }
         setIsOpen(!isOpen)
     }
 
     return (
         <div>
-            <button type='button' className={`border-gray-400 border-2 text-left py-2 px-4 rounded w-full ${selected ? 'text-gray' : 'text-gray-400'}`}
+            <input type='hidden' value={value} name={name} />
+            <button type='button' className={`border-gray-400 border-2 text-left py-2 px-4 rounded w-full ${value ? 'text-gray' : 'text-gray-400'}`}
                 onClick={() => setIsOpen(!isOpen)}>
-                <h1>{selected ? selected : title}</h1>
+                <h1>{value ? value : label}</h1>
             </button>
             {
                 isOpen && (

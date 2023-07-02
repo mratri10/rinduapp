@@ -2,16 +2,17 @@ import React, { useEffect, useRef, useState } from 'react';
 
 
 type TypeList = {
-    title: string,
-    onPress: (v: string) => void
+    name: string,
+    label: string,
+    value: string,
+    onChange: (v: string) => void
 }
 const startYear = 1930;
 const endYear = 2020;
 const yearsArray = Array.from({ length: endYear - startYear + 1 }, (_, index) => startYear + index);
 const monthArray = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
-function DateField({ title, onPress }: TypeList) {
+function DateField({ name, label, onChange, value }: TypeList) {
     const [isOpen, setIsOpen] = useState(false);
-    const [selected, setSelected] = useState('');
 
     const [yearSelected, setYearSelected] = useState(70);
     const [monthSelected, setMonthSelected] = useState(6);
@@ -20,17 +21,17 @@ function DateField({ title, onPress }: TypeList) {
 
     const handleSelected = (isSelected: boolean) => {
         if (isSelected) {
-            setSelected(getFormatDate(dateSelected, monthSelected, yearSelected))
-            onPress(`${dateSelected}-${monthSelected}-${yearSelected}`)
+            onChange(getFormatDate(dateSelected, monthSelected, yearSelected))
         }
         setIsOpen(!isOpen)
     }
 
     return (
-        <div >
-            <button type='button' className={`border-gray-400 border-2 text-left py-2 px-4 rounded w-full ${selected ? 'text-gray' : 'text-gray-400'}`}
+        <div>
+            <input type='hidden' value={value} name={name} />
+            <button type='button' className={`border-gray-400 border-2 text-left py-2 px-4 rounded w-full ${value ? 'text-gray' : 'text-gray-400'}`}
                 onClick={() => setIsOpen(!isOpen)}>
-                <h1>{selected ? selected : title}</h1>
+                <h1>{value ? value : label}</h1>
             </button>
             {
                 isOpen && (
